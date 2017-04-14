@@ -44,7 +44,7 @@ namespace Ng4AspNetCore.StarterWeb
 
 				app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
 				{
-					HotModuleReplacement = false
+					HotModuleReplacement = true
 				});
 			}
 			else

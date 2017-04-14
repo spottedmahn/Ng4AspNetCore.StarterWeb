@@ -40,35 +40,6 @@ module.exports = function () {
 				}
 			}),
 			new ProgressPlugin(),
-			new HtmlWebpackPlugin({
-				"template": "./ClientApp\\index.html",
-				"filename": "./index.html",
-				"hash": false,
-				"inject": true,
-				"compile": true,
-				"favicon": false,
-				"minify": false,
-				"cache": true,
-				"showErrors": true,
-				"chunks": "all",
-				"excludeChunks": [],
-				"title": "Webpack App",
-				"xhtml": true,
-				"chunksSortMode": function sort(left, right) {
-					let leftIndex = entryPoints.indexOf(left.names[0]);
-					let rightindex = entryPoints.indexOf(right.names[0]);
-					if (leftIndex > rightindex) {
-						return 1;
-					}
-					else if (leftIndex < rightindex) {
-						return -1;
-					}
-					else {
-						return 0;
-					}
-				}
-			}),
-			new BaseHrefWebpackPlugin({}),
 			new CommonsChunkPlugin({
 				"name": "inline",
 				"minChunks": null
