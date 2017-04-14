@@ -10,7 +10,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include=".template.config\template.json" />
+	  <Compile Remove=".template.config\**" />
+	  <Compile Remove="wwwroot\**" />
+	  <Content Remove=".template.config\**" />
+	  <Content Remove="wwwroot\**" />
+	  <EmbeddedResource Remove=".template.config\**" />
+	  <EmbeddedResource Remove="wwwroot\**" />
+	  <None Remove=".template.config\**" />
+	  <None Remove="wwwroot\**" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
@@ -31,9 +38,6 @@
 		<None Update="webpack.prod.config.js">
 			<DependentUpon>webpack.config.js</DependentUpon>
 		</None>
-	</ItemGroup>
-	<ItemGroup>
-		<Folder Include="wwwroot\" />
 	</ItemGroup>
 
 	<Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
