@@ -13,8 +13,8 @@ const { AotPlugin } = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "main"];
-const baseHref = "";
-const deployUrl = "";
+const baseHref = undefined;
+const deployUrl = undefined;
 
 
 
@@ -22,8 +22,10 @@ const deployUrl = "";
 module.exports = function () {
 	return {
 		"output": {
+			"path": path.join(process.cwd(), "wwwroot\\dist"),
 			"filename": "[name].[chunkhash:20].bundle.js",
-			"chunkFilename": "[id].[chunkhash:20].chunk.js"
+			"chunkFilename": "[id].[chunkhash:20].chunk.js",
+            "publicPath": "/dist/"
 		},
 		"plugins": [
 			new NoEmitOnErrorsPlugin(),

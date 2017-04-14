@@ -1,24 +1,12 @@
 ﻿const path = require('path');
 const merge = require('webpack-merge');
-const ProgressPlugin = require('webpack/lib/ProgressPlugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const postcssUrl = require('postcss-url');
-const cssnano = require('cssnano');
-
-const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin, DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
-const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin, SuppressExtractedTextChunksWebpackPlugin } = require('@angular/cli/plugins/webpack');
-const { CommonsChunkPlugin, UglifyJsPlugin } = require('webpack').optimize;
-const { AotPlugin } = require('@ngtools/webpack');
-
-const nodeModules = path.join(process.cwd(), 'node_modules');
-const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "main"];
-const baseHref = "";
-const deployUrl = "";
 
 const devPlugins = require("./webpack.dev.config");
 const prodPlugins = require("./webpack.prod.config");
+
+
 
 
 
@@ -50,12 +38,6 @@ module.exports = (env) => {
 			"styles": [
 				"./ClientApp\\styles.css"
 			]
-		},
-		"output": {
-			"path": path.join(process.cwd(), "wwwroot\\dist"),
-			"filename": "[name].bundle.js",
-			"chunkFilename": "[id].chunk.js",
-			"publicPath": "/dist/"
 		},
 		"module": {
 			"rules": [
@@ -206,4 +188,3 @@ module.exports = (env) => {
 
 	return merge(isProdBuild ? prodPlugins() : devPlugins(), sharedConfig);
 }
-

@@ -4,23 +4,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
-const cssnano = require('cssnano');
 
-const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin, DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
+const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin } = require('webpack');
 const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin, SuppressExtractedTextChunksWebpackPlugin } = require('@angular/cli/plugins/webpack');
-const { CommonsChunkPlugin, UglifyJsPlugin } = require('webpack').optimize;
+const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AotPlugin } = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "main"];
-const baseHref = "";
-const deployUrl = "";
+const baseHref = undefined;
+const deployUrl = undefined;
 
 
 
 
 module.exports = function () {
 	return {
+		"output": {
+			"path": path.join(process.cwd(), "wwwroot\\dist"),
+			"filename": "[name].bundle.js",
+			"chunkFilename": "[id].chunk.js",
+			"publicPath": "/dist/"
+		},
 		"plugins": [
 			new NoEmitOnErrorsPlugin(),
 			new GlobCopyWebpackPlugin({
