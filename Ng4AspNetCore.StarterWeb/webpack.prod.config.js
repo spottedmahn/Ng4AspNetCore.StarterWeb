@@ -25,7 +25,7 @@ module.exports = function () {
 			"path": path.join(process.cwd(), "wwwroot\\dist"),
 			"filename": "[name].[chunkhash:20].bundle.js",
 			"chunkFilename": "[id].[chunkhash:20].chunk.js",
-            "publicPath": "/dist/"
+			"publicPath": "/dist/"
 		},
 		"plugins": [
 			new NoEmitOnErrorsPlugin(),
