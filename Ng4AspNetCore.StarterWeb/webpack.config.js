@@ -7,9 +7,6 @@ const devPlugins = require("./webpack.dev.config");
 const prodPlugins = require("./webpack.prod.config");
 
 
-
-
-
 module.exports = (env) => {
 	const isProdBuild = (env && env.prod);
 	const sharedConfig = {
@@ -38,6 +35,9 @@ module.exports = (env) => {
 			"styles": [
 				"./ClientApp\\styles.css"
 			]
+		},
+		"output": {
+			"library": ['main']
 		},
 		"module": {
 			"rules": [

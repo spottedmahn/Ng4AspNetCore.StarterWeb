@@ -1,8 +1,25 @@
-﻿<app-root>Loading...</app-root>
+﻿@using Microsoft.Extensions.Options;
+@using Ng4AspNetCore.StarterWeb.Settings;
+@inject IOptions<AzureAdB2c> settings;
+
+<app-root>Loading...</app-root>
 
 @section scripts {
 	<script type="text/javascript" src="~/dist/inline.bundle.js"></script>
 	<script type="text/javascript" src="~/dist/polyfills.bundle.js"></script>
 	<script type="text/javascript" src="~/dist/vendor.bundle.js"></script>
 	<script type="text/javascript" src="~/dist/main.bundle.js"></script>
+
+	<script type="text/javascript">
+		var b2cSettings = {
+			"tenantName": "@settings.Value.TenantName",
+			"clientId": "@settings.Value.ClientId",
+			"signInPolicyName": "@settings.Value.SignInPolicyName",
+			"signInSignUpPolicyName": "@settings.Value.SignInSignUpPolicyName",
+			"editProfilePolicyName": "@settings.Value.EditProfilePolicyName",
+			"redirect_uri": "@settings.Value.RedirectUri"
+		};
+
+		main.run(b2cSettings);
+	</script>
 }

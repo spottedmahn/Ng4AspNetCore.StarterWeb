@@ -1,0 +1,12 @@
+﻿<md-toolbar color="primary">
+	<span>Ng4AspNetCore.StarterWeb</span>
+	<span class="spacer"></span>
+
+	<md-menu #appMenu="mdMenu">
+		<button md-menu-item (click)="login()" *ngIf="!authService.isAuthenticated">Login</button>
+		<button md-menu-item (click)="logout()" *ngIf="authService.isAuthenticated">Logout</button>
+	</md-menu>
+	<button md-icon-button [mdMenuTriggerFor]="appMenu">
+		<md-icon>more_vert</md-icon>
+	</button>
+</md-toolbar>

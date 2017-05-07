@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 
-const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin } = require('webpack');
+const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin, ProvidePlugin } = require('webpack');
 const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin, SuppressExtractedTextChunksWebpackPlugin } = require('@angular/cli/plugins/webpack');
 const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AotPlugin } = require('@ngtools/webpack');
@@ -40,6 +40,9 @@ module.exports = function () {
 				}
 			}),
 			new ProgressPlugin(),
+			new ProvidePlugin({
+				hello: path.join(process.cwd(), "ClientApp\\lib\\hello.all.js")
+			}),
 			new CommonsChunkPlugin({
 				"name": "inline",
 				"minChunks": null

@@ -41,6 +41,9 @@ module.exports = function () {
 				}
 			}),
 			new ProgressPlugin(),
+			new ProvidePlugin({
+				hello: path.join(process.cwd(), "ClientApp\\lib\\hello.all.js")
+			}),
 			new CommonsChunkPlugin({
 				"name": "inline",
 				"minChunks": null

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.SpaServices.Webpack;
+using Ng4AspNetCore.StarterWeb.Settings;
 
 namespace Ng4AspNetCore.StarterWeb
 {
@@ -30,6 +31,9 @@ namespace Ng4AspNetCore.StarterWeb
 		{
 			// Add framework services.
 			services.AddMvc();
+
+			// Add application settings.
+			services.Configure<AzureAdB2c>(Configuration.GetSection("AzureAdB2c"));
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
