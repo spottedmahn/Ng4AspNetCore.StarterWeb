@@ -1,9 +1,6 @@
 ﻿export interface B2CSettings {
-	tenantName: string;
+	tenantId: string;
 	clientId: string;
-	scope: string;
-	signInPolicyName: string;
-	signInSignUpPolicyName: string;
-	editProfilePolicyName: string;
-	redirect_uri: string;
+	scopes: string[];
+	policyName: string;
 }

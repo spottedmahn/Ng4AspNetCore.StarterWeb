@@ -6,7 +6,7 @@ const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 const cssnano = require('cssnano');
 
-const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin, ProvidePlugin, DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
+const { NoEmitOnErrorsPlugin, LoaderOptionsPlugin, DefinePlugin, HashedModuleIdsPlugin } = require('webpack');
 const { GlobCopyWebpackPlugin, BaseHrefWebpackPlugin, SuppressExtractedTextChunksWebpackPlugin } = require('@angular/cli/plugins/webpack');
 const { CommonsChunkPlugin, UglifyJsPlugin } = require('webpack').optimize;
 const { AotPlugin } = require('@ngtools/webpack');
@@ -41,9 +41,6 @@ module.exports = function () {
 				}
 			}),
 			new ProgressPlugin(),
-			new ProvidePlugin({
-				hello: path.join(process.cwd(), "ClientApp\\lib\\hello.all.js")
-			}),
 			new CommonsChunkPlugin({
 				"name": "inline",
 				"minChunks": null

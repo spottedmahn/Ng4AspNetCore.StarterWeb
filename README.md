@@ -8,7 +8,7 @@ This repo contains a .NET Core project template with the following components:
 
 1. [Angular 4 front-end](https://angular.io/)
 2. [Asp.Net Core server side website](https://docs.microsoft.com/en-us/aspnet/core/)
-3. [hello.js](https://adodson.com/hello.js/) and a stub of an auth service to ease the pain with authenticating against Azure AD B2C. *NOTE: Stub is based on [this sample](https://github.com/Azure-Samples/active-directory-b2c-javascript-singlepageapp-dotnet-webapi) from Azure AD B2C team and includes temporary/local fixes in the local copy of hello.all.js.*
+3. [Microsoft Authentication Library for JS (MSAL)](https://github.com/AzureAD/microsoft-authentication-library-for-js) and a stub of an auth service to ease the pain with authenticating against Azure AD B2C. *NOTE: Stub is based on [this sample](https://github.com/Azure-Samples/active-directory-b2c-javascript-singlepageapp-dotnet-webapi) from Azure AD B2C team.*
 
 ### Getting Started ###
 
