@@ -1,34 +1,37 @@
 ﻿///<reference path="../../../../node_modules/msal/out/msal.d.ts" />
 import { Inject, Injectable } from '@angular/core';
-import { B2CSettings } from './b2c.settings';
+
+
+import { AuthSettings } from './auth.settings';
+import { AuthIdentity } from './auth.identity';
 
 @Injectable()
 export class AuthService {
 
-	clientApp: Msal.UserAgentApplication;
-	
-	userName: string;
-
-	signInPolicy: string = "azureAdB2cSignIn";
-	signInSignUpPolicy: string = "azureAdB2cSignInSignUp";
-	editProfilePolicy: string = "azureAdB2cEditProfile";
+	userAgentApp: Msal.UserAgentApplication;
+	identity: AuthIdentity;
 
 	isAuthenticated: boolean = false;
 
-	constructor( @Inject('b2cSettings') private b2cSettings: B2CSettings) {
+	constructor( @Inject('authSettings') private authSettings: AuthSettings) {
 		var self = this;
-		var authority: string = "https://login.microsoftonline.com/tfp/" + b2cSettings.tenantId + "/" + b2cSettings.policyName + "/";
-		this.clientApp = new Msal.UserAgentApplication(b2cSettings.clientId, authority, (errorDesc: string, token: string, error: string, tokenType: string) => {
-			var scopedClientApp = window.msal as Msal.UserAgentApplication;
+		var authority: string = "https://login.microsoftonline.com/tfp/" + authSettings.tenantId + "/" + authSettings.policyName + "/";
+
+		this.userAgentApp = new Msal.UserAgentApplication(authSettings.clientId, authority, (errorDesc: string, token: string, error: string, tokenType: string) => {
+			var scopedUserAgentApp = window.msal as Msal.UserAgentApplication;
 			if (token) {
-				scopedClientApp.acquireTokenSilent(self.b2cSettings.scopes).then((accessToken: string) => {
-					self.isAuthenticated = true;
-					var foo = Msal.Utils.extractIdToken(accessToken);
+				scopedUserAgentApp.acquireTokenSilent(self.authSettings.scopes).then((accessToken: string) => {
+
+					// Update status.
+					self.setAuthenticated(accessToken);
+					
 				}, (error) => {
 					console.log(error);
-					scopedClientApp.acquireTokenPopup(self.b2cSettings.scopes).then((accessToken: string) => {
-						self.isAuthenticated = true;
-						var foo = Msal.Utils.extractIdToken(accessToken);
+					scopedUserAgentApp.acquireTokenPopup(self.authSettings.scopes).then((accessToken: string) => {
+
+						// Update status.
+						self.setAuthenticated(accessToken);
+
 					}, (error) => {
 						console.log(error);
 					});
@@ -40,11 +43,18 @@ export class AuthService {
 		});
 	}
 
-	login(policy: string, displayType: string) {
-		this.clientApp.loginRedirect(this.b2cSettings.scopes);
+	login() {
+		this.userAgentApp.loginRedirect(this.authSettings.scopes);
 	} 
 
-	logout(policy: string) {
-		this.clientApp.logout();
+	logout() {
+		this.userAgentApp.logout();
+	}
+
+	private setAuthenticated(accessToken: string) {
+		// Update the UI.
+		this.isAuthenticated = true;
+		this.identity = Msal.Utils.extractIdToken(accessToken) as AuthIdentity;
+		this.identity.displayName = this.identity.given_name + ' ' + this.identity.family_name;
 	}
 }

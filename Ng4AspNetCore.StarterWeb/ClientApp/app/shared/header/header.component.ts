@@ -1,7 +1,6 @@
 ﻿import { Inject, Component, OnInit } from '@angular/core';
 import { MaterialModule } from '@angular/material';
 
-import { B2CSettings } from '../../core/auth/b2c.settings';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
@@ -11,16 +10,16 @@ import { AuthService } from '../../core/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-	constructor( @Inject('b2cSettings') private b2cSettings: B2CSettings, public authService: AuthService) { }
+	constructor(public authService: AuthService) { }
 
 	ngOnInit() {
 	}
 
 	login(): void {
-		this.authService.login(this.authService.signInSignUpPolicy, "page");
+		this.authService.login();
 	}
 
 	logout(): void {
-		this.authService.logout(this.authService.signInSignUpPolicy);
+		this.authService.logout();
 	}
 }

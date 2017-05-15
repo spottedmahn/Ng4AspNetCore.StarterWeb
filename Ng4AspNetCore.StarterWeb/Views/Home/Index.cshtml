@@ -12,13 +12,13 @@
 	<script type="text/javascript" src="~/dist/main.bundle.js"></script>
 
 	<script type="text/javascript">
-		var b2cSettings = {
+		var authSettings = {
 			"tenantId": "@settings.Value.TenantId",
 			"clientId": "@settings.Value.ClientId",
 			"policyName": "@settings.Value.PolicyName",
 			"scopes": [@Html.Raw(settings.Value.GetScopes())]
 		};
 
-		main.run(b2cSettings);
+		main.run(authSettings);
 	</script>
 }

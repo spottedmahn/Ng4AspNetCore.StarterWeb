@@ -1,4 +1,4 @@
-﻿export interface B2CSettings {
+﻿export interface AuthSettings {
 	tenantId: string;
 	clientId: string;
 	scopes: string[];
