@@ -18,10 +18,10 @@ Before cloning/forking/downloading, I strongly encourage you to read the post by
 
 Follow the steps below to install this project template locally:
 
-1. Ensure you have Asp.Net Core installed locally. If you don't, visit the following link to get it setup: [Get Started with .NET Core](https://www.microsoft.com/net/core) 
-2. Clone this repo or download the zip and unzip 
-3. Open a commnad prompt and change directories to the location to which you just cloned/unzipped the code.
-4. Run the following commnad (adjust the path to ensure you're correctly targeting the folder containing the .template.config folder) :
+1. Ensure you have Asp.Net Core installed locally. If you don't, visit the following link to get it setup: [Get Started with .NET Core](https://www.microsoft.com/net/core)
+2. Clone this repo or download the zip and unzip
+3. Open a command prompt and change directories to the location to which you just cloned/unzipped the code.
+4. Run the following command (adjust the path to ensure you're correctly targeting the folder containing the .template.config folder) :
 ````
 dotnet new --install Ng4AspNetCore.StarterWeb
 ````
@@ -29,7 +29,7 @@ dotnet new --install Ng4AspNetCore.StarterWeb
 ````
 dotnet new ng4aspnetcore -n <name of new project>
 ````
-6. Now change directories to the newly created project folder and run the following commnads:
+6. Now change directories to the newly created project folder and run the following commands:
 ````
 dotnet restore
 npm install
