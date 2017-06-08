@@ -15,7 +15,7 @@ namespace Ng4AspNetCore.StarterWeb.Settings
 
 		public string GetScopes()
 		{
-			if (Scopes != null || Scopes.Length > 0)
+			if (Scopes != null && Scopes.Length > 0)
 			{
 				var sb = new StringBuilder();
 				for (int i = 0; i < Scopes.Length; i++)
