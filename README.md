@@ -33,6 +33,7 @@ dotnet new ng4aspnetcore -n <name of new project>
 ````
 dotnet restore
 npm install
+.\node_modules\.bin\webpack --config webpack.config.js
 ````
 7. You're now ready to run the application. You can do this by opening the project in Visual Studio and debugging or via command line (if you're running on Linux or MacOS check out [this page](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/environments) for the command to set the environment):
 ````
